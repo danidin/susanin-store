@@ -10,7 +10,7 @@ const client = new MongoClient('mongodb://localhost:27017')
 let db
 client.connect(function(err) {
   assert.equal(null, err);
-  console.log("Connected successfully to mongo server");
+  console.log('Connected successfully to mongo server');
   db = client.db('susanin-data');
 });
 
@@ -34,7 +34,7 @@ sock.on('message', (message) => {
       assert.equal(err, null);
       assert.equal(1, result.result.n);
       assert.equal(1, result.ops.length);
-      console.log("Created email");
+      console.log('Created email');
       sock.send(JSON.stringify({ "status": "OK" }))
     });
   }
@@ -43,9 +43,7 @@ sock.on('message', (message) => {
 
     collection.deleteOne({ _id: new mongodb.ObjectID(parsed.payload) }, function(err, result) {
       assert.equal(err, null);
-      // assert.equal(1, result.result.n);
-      // assert.equal(1, result.ops.length);
-      console.log("Deleted email id=" + parsed.payload);
+      console.log('Deleted email id=' + parsed.payload);
       sock.send(JSON.stringify({ "status": "OK" }))
     });
   }
